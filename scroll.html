@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	.box{ width:400px; height:30px; position:relative; overflow:hidden;  margin:30px auto; border-radius:15px; border:1px solid #ccc;}
+	.box div{position:absolute; left:0; top:0; width:800px; height:30px; background:-webkit-repeating-linear-gradient(-45deg, #0f0 0px,#0f0 10px,#ff0 10px,#ff0 20px); -webkit-animation:test 4s linear infinite; }
+	.text{ padding-left:50px; }
+	.text #s1{ color:#00ff00; }
+	.text #s2{ color:#ffff00; }
+	@keyframes test{
+		from{ left:0;}
+		to{ left:-400px;}
+	}
+</style>
+<script>
+	window.onload=function(){
+		var oCol1=document.querySelector('#col1');
+		var oCol2=document.querySelector('#col2');
+		var oSpan1=document.querySelector('#s1');
+		var oSpan2=document.querySelector('#s2');
+		var oScroll=document.querySelector('.box div');
+		
+		oCol1.onchange=function(){
+			oSpan1.innerHTML=this.value;
+			oSpan1.style.color=this.value;
+			oScroll.style.background='-webkit-repeating-linear-gradient(-45deg, '+this.value+' 0px,'+this.value+' 10px,'+oSpan2.innerHTML+' 10px,'+oSpan2.innerHTML+' 20px)';
+		};
+		oCol2.onchange=function(){
+			oSpan2.innerHTML=this.value;
+			oSpan2.style.color=this.value;
+			oScroll.style.background='-webkit-repeating-linear-gradient(-45deg, '+oSpan1.innerHTML+' 0px,'+oSpan1.innerHTML+' 10px,'+this.value+' 10px,'+this.value+' 20px)';
+		};
+		
+	};
+</script>
+</head>
+
+<body>
+	颜色：
+	<input type="color" value="#00ff00" id="col1">
+	<input type="color" value="#ffff00" id="col2">
+    <div class="text">
+    	<span id="s1">#00ff00</span>
+    	<span id="s2">#ffff00</span>
+    </div>
+    <div class="box">
+    	<div ></div>
+    </div>
+</body>
+</html>
